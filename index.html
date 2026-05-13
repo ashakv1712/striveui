@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 6 Math Learning Outcomes</title>
+    <style>
+        :root {
+            --primary: #0F1574;
+            --primary-light: #878AB9;
+            --accent-orange: #FFA41C;
+            --accent-pink: #FF4F84;
+            --accent-purple: #7058FF;
+            --accent-blue: #2C81ED;
+            --accent-green: #B0EB33;
+            --text-dark: #575863;
+            --text-muted: #B1B1C2;
+            --navy-bg: #484D97;
+            --purple-tint: #f1eeff;
+            --subtle-bg: #f3f3f8;
+            --shadow-card: 0px 8px 30.26px rgba(15, 21, 116, 0.07);
+            --radius: 24px;
+            --transition: 0.2s ease;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Jost', 'Roboto', sans-serif;
+            background: #f3f4fb;
+            color: var(--text-dark);
+        }
+        .page-shell {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 18px;
+        }
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px 22px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow-card);
+        }
+        .hero-copy {
+            max-width: 100%;
+        }
+        .eyebrow {
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-purple);
+            margin: 0 0 8px;
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 2.5vw, 2.6rem);
+            line-height: 1.1;
+            color: var(--primary);
+            font-family: 'Jost', sans-serif;
+        }
+        .hero p {
+            margin: 12px 0 0;
+            font-size: 0.975rem;
+            color: var(--text-muted);
+            max-width: 610px;
+            line-height: 1.6;
+        }
+        .grade-selector {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            min-width: 140px;
+        }
+        .grade-button {
+            border: none;
+            background: linear-gradient(135deg, var(--primary), #1a2090);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0px 10px 22px rgba(15, 21, 116, 0.18);
+            transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .grade-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0px 14px 26px rgba(15, 21, 116, 0.24);
+            background: linear-gradient(135deg, #0c1260, #151b7a);
+        }
+        .grade-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 12px;
+            width: 180px;
+            background: white;
+            border: 1px solid #e3e3f0;
+            border-radius: 18px;
+            box-shadow: 0px 20px 40px rgba(15, 21, 116, 0.12);
+            overflow: hidden;
+            z-index: 10;
+        }
+        .grade-menu button {
+            width: 100%;
+            border: none;
+            background: none;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+        .grade-menu button:hover {
+            background: rgba(112, 88, 255, 0.08);
+        }
+        .grade-menu button.active {
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+        .domain {
+            margin-bottom: 24px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow-card);
+        }
+        .domain-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            background: linear-gradient(90deg, rgba(112,88,255,0.08), rgba(255,180,154,0.08));
+            cursor: pointer;
+            gap: 12px;
+        }
+        .domain-title {
+            margin: 0;
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.01em;
+        }
+        .domain-content {
+            padding: 16px 18px 22px;
+        }
+        .top-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .test-button {
+            border: none;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .test-button:hover {
+            transform: translateY(-1px);
+        }
+        .diagnostic {
+            background: #FF4F84;
+            color: white;
+            box-shadow: 0 12px 24px rgba(255, 79, 132, 0.18);
+        }
+        .mastery {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            color: white;
+            box-shadow: 0 12px 24px rgba(44, 129, 237, 0.16);
+        }
+        .outcome {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding: 16px;
+            background: var(--purple-tint);
+            border-radius: 16px;
+            border: 1px solid #e6e3ff;
+        }
+        .outcome-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .outcome-code {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .outcome-description {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+        .sample-questions {
+            margin: 0;
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: #ffffff;
+            padding: 12px 14px;
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(15, 21, 116, 0.06);
+            line-height: 1.5;
+        }
+        .worksheet-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .worksheet-link:hover {
+            text-decoration: underline;
+        }
+        .unit-mastery {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        @media (max-width: 820px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .grade-selector {
+                justify-content: flex-start;
+            }
+            .domain-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">Grade 6 CCSS</div>
+                <h1>Grade 6 Math Learning Outcomes</h1>
+                <p>Start with a focused diagnostic, see each standard code clearly, and download practice worksheets for every skill.</p>
+            </div>
+            <div class="grade-selector">
+                <button class="grade-button" id="gradeButton" aria-haspopup="true" aria-expanded="false">
+                    Grade 6 <span>▾</span>
+                </button>
+                <div class="grade-menu" id="gradeMenu" hidden>
+                    <button data-grade="4">Grade 4</button>
+                    <button data-grade="5">Grade 5</button>
+                    <button data-grade="6" class="active">Grade 6</button>
+                    <button data-grade="7">Grade 7</button>
+                    <button data-grade="8">Grade 8</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="domain">
+            <div class="domain-header">
+                <div>
+                    <p class="domain-title">Ratios and Proportional Relationships</p>
+                </div>
+            </div>
+            <div class="domain-content">
+                <div class="top-actions">
+                    <button class="test-button diagnostic">Take Diagnostic Test</button>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.RP.A.1</span>
+                    </div>
+                    <p class="outcome-description">Understand the concept of a ratio and use ratio language to describe a ratio relationship between two quantities.</p>
+                    <p class="sample-questions">Example: Write the ratio of 3 apples to 2 oranges in simplest form.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.RP.A.2</span>
+                    </div>
+                    <p class="outcome-description">Understand the concept of a unit rate a/b associated with a ratio a:b with b ≠ 0, and use rate language in the context of a ratio relationship.</p>
+                    <p class="sample-questions">Example: 5 pencils = $2, 1 pencil = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.RP.A.3</span>
+                    </div>
+                    <p class="outcome-description">Use ratio and rate reasoning to solve real-world and mathematical problems.</p>
+                    <p class="sample-questions">Example: 1 cup sugar : 2 cups flour = ? : 6 cups flour</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="unit-mastery">
+                    <button class="test-button mastery">Take Unit Mastery Test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="domain">
+            <div class="domain-header">
+                <div>
+                    <p class="domain-title">The Number System</p>
+                </div>
+            </div>
+            <div class="domain-content">
+                <div class="top-actions">
+                    <button class="test-button diagnostic">Take Diagnostic Test</button>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.A.1</span>
+                    </div>
+                    <p class="outcome-description">Interpret and compute quotients of fractions, and solve word problems involving division of fractions by fractions.</p>
+                    <p class="sample-questions">Example: 1/2 ÷ 1/4 = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.B.2</span>
+                    </div>
+                    <p class="outcome-description">Fluently divide multi-digit numbers using the standard algorithm.</p>
+                    <p class="sample-questions">Example: 1234 ÷ 12 = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.B.3</span>
+                    </div>
+                    <p class="outcome-description">Fluently add, subtract, multiply, and divide multi-digit decimals using the standard algorithm for each operation.</p>
+                    <p class="sample-questions">Example: 12.34 + 5.67 = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.B.4</span>
+                    </div>
+                    <p class="outcome-description">Find the greatest common factor of two whole numbers less than or equal to 100 and the least common multiple of two whole numbers less than or equal to 12.</p>
+                    <p class="sample-questions">Example: GCF(24, 36) = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.C.5</span>
+                    </div>
+                    <p class="outcome-description">Understand that positive and negative numbers are used together to describe quantities having opposite directions or values.</p>
+                    <p class="sample-questions">Example: Compare +5°C and -3°C on a number line.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.C.6</span>
+                    </div>
+                    <p class="outcome-description">Understand a rational number as a point on the number line. Extend number line diagrams and coordinate axes.</p>
+                    <p class="sample-questions">Example: Place -2.5 correctly on the number line.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.C.7</span>
+                    </div>
+                    <p class="outcome-description">Understand ordering and absolute value of rational numbers.</p>
+                    <p class="sample-questions">Example: |-5| = ? Compare to 3.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.NS.C.8</span>
+                    </div>
+                    <p class="outcome-description">Solve real-world and mathematical problems by graphing points in all four quadrants of the coordinate plane.</p>
+                    <p class="sample-questions">Example: Plot (3, -2). Which quadrant?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="unit-mastery">
+                    <button class="test-button mastery">Take Unit Mastery Test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="domain">
+            <div class="domain-header">
+                <div>
+                    <p class="domain-title">Expressions and Equations</p>
+                </div>
+            </div>
+            <div class="domain-content">
+                <div class="top-actions">
+                    <button class="test-button diagnostic">Take Diagnostic Test</button>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.A.1</span>
+                    </div>
+                    <p class="outcome-description">Write and evaluate numerical expressions involving whole-number exponents.</p>
+                    <p class="sample-questions">Example: 2³ = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.A.2</span>
+                    </div>
+                    <p class="outcome-description">Write, read, and evaluate expressions in which letters stand for numbers.</p>
+                    <p class="sample-questions">Example: Solve 3x + 2 when x = 4</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.A.3</span>
+                    </div>
+                    <p class="outcome-description">Apply the properties of operations to generate equivalent expressions.</p>
+                    <p class="sample-questions">Example: 2(x + 3) = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.A.4</span>
+                    </div>
+                    <p class="outcome-description">Identify when two expressions are equivalent.</p>
+                    <p class="sample-questions">Example: 2x + 3 ≡ 3 + 2x ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.B.5</span>
+                    </div>
+                    <p class="outcome-description">Understand solving an equation or inequality as a process of answering a question.</p>
+                    <p class="sample-questions">Example: x = 2, x + 1 = 3. True?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.B.6</span>
+                    </div>
+                    <p class="outcome-description">Use variables to represent numbers and write expressions when solving problems.</p>
+                    <p class="sample-questions">Example: n = number of students in class</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.B.7</span>
+                    </div>
+                    <p class="outcome-description">Solve real-world and mathematical problems by writing and solving equations.</p>
+                    <p class="sample-questions">Example: If x + 5 = 10 find x</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.B.8</span>
+                    </div>
+                    <p class="outcome-description">Write an inequality of the form x > c or x < c to represent a constraint.</p>
+                    <p class="sample-questions">Example: age > 12</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.EE.C.9</span>
+                    </div>
+                    <p class="outcome-description">Use variables to represent two quantities in a real-world problem that change in relationship to one another.</p>
+                    <p class="sample-questions">Example: speed = 40 mph, time = 2 hours, distance = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="unit-mastery">
+                    <button class="test-button mastery">Take Unit Mastery Test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="domain">
+            <div class="domain-header">
+                <div>
+                    <p class="domain-title">Geometry</p>
+                </div>
+            </div>
+            <div class="domain-content">
+                <div class="top-actions">
+                    <button class="test-button diagnostic">Take Diagnostic Test</button>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.G.A.1</span>
+                    </div>
+                    <p class="outcome-description">Find the area of right triangles, other triangles, special quadrilaterals, and polygons.</p>
+                    <p class="sample-questions">Example: Triangle area = ½ × base × height = ½ × 6 × 4 = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.G.A.2</span>
+                    </div>
+                    <p class="outcome-description">Find the volume of a right rectangular prism with fractional edge lengths.</p>
+                    <p class="sample-questions">Example: Volume = 3 × 2 × 4 = ?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.G.A.3</span>
+                    </div>
+                    <p class="outcome-description">Draw polygons in the coordinate plane given coordinates for the vertices.</p>
+                    <p class="sample-questions">Example: Plot (0,0), (2,0), (2,2), (0,2)</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.G.A.4</span>
+                    </div>
+                    <p class="outcome-description">Represent three-dimensional figures using nets and find the surface area.</p>
+                    <p class="sample-questions">Example: Identify the faces of a cube from its net of 6 squares.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="unit-mastery">
+                    <button class="test-button mastery">Take Unit Mastery Test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="domain">
+            <div class="domain-header">
+                <div>
+                    <p class="domain-title">Statistics and Probability</p>
+                </div>
+            </div>
+            <div class="domain-content">
+                <div class="top-actions">
+                    <button class="test-button diagnostic">Take Diagnostic Test</button>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.SP.A.1</span>
+                    </div>
+                    <p class="outcome-description">Recognize a statistical question as one that anticipates variability in the data.</p>
+                    <p class="sample-questions">Example: Is “How tall are the students?” a statistical question? Why?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.SP.A.2</span>
+                    </div>
+                    <p class="outcome-description">Understand that a set of data collected has a distribution described by its center, spread, and overall shape.</p>
+                    <p class="sample-questions">Example: Use mean, median, and mode to describe this set of scores.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.SP.A.3</span>
+                    </div>
+                    <p class="outcome-description">Recognize that a measure of center summarizes all values with a single number.</p>
+                    <p class="sample-questions">Example: Which center measure best summarizes this data?</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.SP.B.4</span>
+                    </div>
+                    <p class="outcome-description">Display numerical data in plots on a number line, including dot plots, histograms, and box plots.</p>
+                    <p class="sample-questions">Example: Create a histogram for these survey responses.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="outcome">
+                    <div class="outcome-meta">
+                        <span class="outcome-code">6.SP.B.5</span>
+                    </div>
+                    <p class="outcome-description">Summarize numerical data sets in relation to their context.</p>
+                    <p class="sample-questions">Example: Report the median and range for a small data set.</p>
+                    <a href="#" class="worksheet-link">Download Worksheet (PDF)</a>
+                </div>
+                <div class="unit-mastery">
+                    <button class="test-button mastery">Take Unit Mastery Test</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gradeButton = document.getElementById('gradeButton');
+        const gradeMenu = document.getElementById('gradeMenu');
+        const gradeOptions = gradeMenu.querySelectorAll('button');
+
+        gradeButton.addEventListener('click', () => {
+            const expanded = gradeButton.getAttribute('aria-expanded') === 'true';
+            gradeButton.setAttribute('aria-expanded', String(!expanded));
+            gradeMenu.hidden = expanded;
+        });
+
+        gradeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                gradeOptions.forEach(btn => btn.classList.remove('active'));
+                option.classList.add('active');
+                gradeButton.innerHTML = `Grade ${option.dataset.grade} <span>▾</span>`;
+                gradeButton.setAttribute('aria-expanded', 'false');
+                gradeMenu.hidden = true;
+            });
+        });
+
+        document.addEventListener('click', event => {
+            if (!gradeButton.contains(event.target) && !gradeMenu.contains(event.target)) {
+                gradeMenu.hidden = true;
+                gradeButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.querySelectorAll('.domain-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
