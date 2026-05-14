@@ -56,6 +56,120 @@ body {
     padding: 20px;
 }
 
+.outcome {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 8px;
+    padding: 10px 14px;
+    background: #faf9ff;
+    border-radius: 14px;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease;
+}
+
+.outcome-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.outcome-side {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding-top: 2px;
+    margin-left: auto;
+}
+
+.side-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.pdf-mini-viewer {
+    flex-shrink: 0;
+    width: 180px;
+    background: white;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(15,21,116,0.06);
+    margin-left: auto;
+}
+
+.pdf-mini-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.pdf-mini-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.pdf-mini-placeholder {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.pdf-mini-embed {
+    width: 100%;
+    height: 220px;
+    border: none;
+    display: block;
+    overflow: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.pdf-mini-embed::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
+.download-button {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: var(--accent-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all var(--transition);
+}
+
+.download-button:hover {
+    background: #2367d4;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(44, 129, 237, 0.2);
+}
+
 /* HERO */
 
 .hero {
@@ -370,124 +484,211 @@ body {
 
 /* OUTCOMES */
 
-.outcome {
-    display: grid;
-    gap: 8px;
-
-    margin-bottom: 10px;
-
-    padding: 12px;
-
-    background: #faf9ff;
-
-    border-radius: 16px;
-
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        background 0.22s ease;
-}
-
 .outcome:hover {
     transform: translateY(-2px);
-
     background: white;
-
-    box-shadow: 0 14px 30px rgba(15,21,116,0.08);
-}
-
-.outcome-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    box-shadow: 0 10px 24px rgba(15,21,116,0.08);
 }
 
 .outcome-code {
-    font-size: 0.96rem;
+    display: inline-block;
+    font-size: 0.78rem;
     font-weight: 800;
-
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-
-    opacity: 0.72;
-
+    letter-spacing: 0.12em;
     color: var(--primary);
+    margin-bottom: 2px;
 }
 
 .outcome-description {
     margin: 0;
-
-    font-size: 1rem;
-    line-height: 1.75;
-
-    max-width: 760px;
-
+    font-size: 0.93rem;
+    line-height: 1.5;
     color: var(--text-dark);
+    font-weight: 500;
 }
 
 .sample-questions {
     margin: 0;
-
     background: white;
+    border-left: 3px solid var(--accent-orange);
+    border-radius: 8px;
+    padding: 7px 10px;
+    box-shadow: 0 3px 10px rgba(15,21,116,0.04);
+    line-height: 1.4;
+    font-size: 0.82rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
 
-    border-left: 4px solid var(--accent-orange);
+.rotating-examples {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-    border-radius: 12px;
+.examples-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-orange);
+    opacity: 0;
+    animation: fadeInOut 6s infinite;
+    flex-shrink: 0;
+}
 
-    padding: 10px 12px;
+.example-content {
+    flex: 1;
+    position: relative;
+    min-height: 20px;
+}
 
-    box-shadow: 0 6px 16px rgba(15,21,116,0.04);
+.example-item {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
 
-    line-height: 1.5;
+.example-item.active {
+    opacity: 1;
+    position: relative;
+}
 
+.example-item:nth-child(odd) {
     color: var(--primary);
-
-    font-size: 0.9rem;
-    font-weight: 600;
 }
 
-.worksheet-heading {
-    margin: 8px 0 6px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    opacity: 0.8;
+.example-item:nth-child(even) {
+    color: var(--primary-light);
 }
+
+@keyframes fadeInOut {
+    0%, 20% { opacity: 0; }
+    30%, 70% { opacity: 1; }
+    80%, 100% { opacity: 0; }
+}
+
 
 .pdf-downloads {
     display: flex;
-    gap: 8px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.pdf-mini-viewer .pdf-downloads {
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 6px;
 }
 
 .pdf-rectangle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    
+
     width: 40px;
     height: 52px;
-    
-    background: var(--accent-blue);
-    color: white;
-    
+
+    background: white;
+    color: var(--text-muted);
+    border: 2px solid var(--text-muted);
+
     border-radius: 4px;
-    
+
     font-size: 0.7rem;
     font-weight: 700;
-    
+
     text-decoration: none;
-    
+
     transition: all var(--transition);
-    
+
     cursor: pointer;
 }
 
 .pdf-rectangle:hover {
-    background: #2367d4;
+    background: #f8f9fa;
+    color: var(--text-dark);
+    border-color: var(--text-dark);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(44, 129, 237, 0.2);
+    box-shadow: 0 4px 12px rgba(87, 88, 99, 0.2);
 }
+
+/* PDF TAB SWITCHER */
+
+.pdf-tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.pdf-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 4px 8px;
+
+    border-radius: 12px;
+    border: 2px solid transparent;
+
+    font-size: 0.65rem;
+    font-weight: 700;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    background: #ededf8;
+    color: var(--text-muted);
+
+    transition: all var(--transition);
+}
+
+.pdf-tab:hover {
+    background: #e0e1f5;
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.pdf-tab.active {
+    background: var(--accent-purple);
+    color: white;
+    border-color: var(--accent-purple);
+    box-shadow: 0 4px 14px rgba(112,88,255,0.28);
+}
+
+.pdf-tab svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+.pdf-tab-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 800;
+    background: rgba(255,255,255,0.3);
+    line-height: 1;
+}
+
+.pdf-tab:not(.active) .pdf-tab-number {
+    background: rgba(112,88,255,0.15);
+    color: var(--accent-purple);
+}
+
 
 .highlight {
     background: yellow;
@@ -505,6 +706,24 @@ body {
 /* MOBILE */
 
 @media (max-width: 820px) {
+
+    .outcome {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .pdf-mini-viewer {
+        width: 100%;
+        order: 1;
+    }
+
+    .outcome-side {
+        flex-direction: row;
+        flex-wrap: wrap;
+        order: 1;
+        width: 100%;
+        justify-content: flex-start;
+    }
 
     .hero {
         grid-template-columns: 1fr;
@@ -649,78 +868,96 @@ Take Diagnostic Test
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.RP.A.1
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.RP.A.1</span>
+<p class="outcome-description">Understand the concept of a ratio and use ratio language to describe a ratio relationship between two quantities.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Write the ratio of 3 apples to 2 oranges in simplest form.", "Express the ratio of 12 boys to 8 girls in three different ways.", "A recipe uses 4 cups flour to 3 cups sugar. What is this ratio?", "In a parking lot, there are 15 cars and 5 trucks. Find the ratio of cars to trucks.", "A class has 20 students and 4 teachers. What is the student to teacher ratio?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Write the ratio of 3 apples to 2 oranges in simplest form.</div>
 </div>
-
-<p class="outcome-description">
-Understand the concept of a ratio and use ratio language to describe a ratio relationship between two quantities.
-</p>
-
-<p class="sample-questions">
-Example: Write the ratio of 3 apples to 2 oranges in simplest form.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
 </div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.RP.A.2
-</span>
 </div>
-
-<p class="outcome-description">
-Understand the concept of a unit rate associated with a ratio and use rate language in context.
-</p>
-
-<p class="sample-questions">
-Example: 5 pencils = $2, 1 pencil = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Finding Ratios (visual)">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Ratios &amp; Rates Foundations">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
 </div>
-
+<div class="pdf-mini-content" id="pdf-viewer-rpa1">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-rpa1" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.RP.A.3
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.RP.A.2</span>
+<p class="outcome-description">Understand the concept of a unit rate associated with a ratio and use rate language in context.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["5 pencils = $2, 1 pencil = ?", "A car travels 240 miles in 4 hours. What is the unit rate?", "If 3 pounds of apples cost $6, what is the cost per pound?", "A factory produces 150 widgets in 5 hours. Find the rate per hour.", "Water flows at 12 gallons per 3 minutes. What is the rate per minute?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">5 pencils = $2, 1 pencil = ?</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Unit Rates Practice">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Rate Problems">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-rpa2">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-rpa2" download>Download Worksheet 1</a>
+</div>
 </div>
 
-<p class="outcome-description">
-Use ratio and rate reasoning to solve real-world and mathematical problems.
-</p>
-
-<p class="sample-questions">
-Example: 1 cup sugar : 2 cups flour = ? : 6 cups flour
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.RP.A.3</span>
+<p class="outcome-description">Use ratio and rate reasoning to solve real-world and mathematical problems.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["1 cup sugar : 2 cups flour = ? : 6 cups flour", "If 4 oranges cost $3, how much do 12 oranges cost?", "A recipe for 6 people uses 2 cups of rice. How much rice for 15 people?", "A map scale shows 1 inch = 50 miles. How many miles is 3.5 inches?", "If 5 workers can build a fence in 8 days, how long for 10 workers?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">1 cup sugar : 2 cups flour = ? : 6 cups flour</div>
 </div>
-
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet2.pdf" data-label="Ratio Reasoning">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet1.pdf" data-label="Real-World Problems">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-rpa3">
+<embed src="6RPA1_worksheet2.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet2.pdf" class="download-button" id="download-link-rpa3" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="unit-mastery">
@@ -752,201 +989,251 @@ Take Diagnostic Test
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.A.1
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.NS.A.1</span>
+<p class="outcome-description">Interpret and compute quotients of fractions, and solve word problems involving division of fractions by fractions.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["1/2 ÷ 1/4 = ?", "3/4 ÷ 1/8 = ?", "A pizza is 3/4 eaten. If each slice is 1/8 of the pizza, how many slices were eaten?", "2/3 ÷ 1/6 = ?", "If 1/3 cup of flour makes 1 muffin, how many muffins from 2/3 cup?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">1/2 ÷ 1/4 = ?</div>
 </div>
-
-<p class="outcome-description">
-Interpret and compute quotients of fractions, and solve word problems involving division of fractions by fractions.
-</p>
-
-<p class="sample-questions">
-Example: 1/2 ÷ 1/4 = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
 </div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.B.2
-</span>
 </div>
-
-<p class="outcome-description">
-Fluently divide multi-digit numbers using the standard algorithm.
-</p>
-
-<p class="sample-questions">
-Example: 1234 ÷ 12 = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Fraction Division">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Word Problems">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
 </div>
-
+<div class="pdf-mini-content" id="pdf-viewer-ns1">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns1" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.B.3
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.NS.B.2</span>
+<p class="outcome-description">Fluently divide multi-digit numbers using the standard algorithm.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["1234 ÷ 12 = ?", "5678 ÷ 23 = ?", "9876 ÷ 34 = ?", "2468 ÷ 16 = ?", "7890 ÷ 45 = ?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">1234 ÷ 12 = ?</div>
 </div>
-
-<p class="outcome-description">
-Fluently add, subtract, multiply, and divide multi-digit decimals using the standard algorithm for each operation.
-</p>
-
-<p class="sample-questions">
-Example: 12.34 + 5.67 = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
 </div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.B.4
-</span>
 </div>
-
-<p class="outcome-description">
-Find the greatest common factor of two whole numbers less than or equal to 100 and the least common multiple of two whole numbers less than or equal to 12.
-</p>
-
-<p class="sample-questions">
-Example: GCF(24, 36) = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Long Division">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Division Practice">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
 </div>
-
+<div class="pdf-mini-content" id="pdf-viewer-ns2">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns2" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.C.5
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.NS.B.3</span>
+<p class="outcome-description">Fluently add, subtract, multiply, and divide multi-digit decimals using the standard algorithm for each operation.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["12.34 + 5.67 = ?", "23.45 - 8.92 = ?", "4.56 × 2.3 = ?", "15.75 ÷ 2.5 = ?", "9.8 + 12.456 = ?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">12.34 + 5.67 = ?</div>
 </div>
-
-<p class="outcome-description">
-Understand that positive and negative numbers are used together to describe quantities having opposite directions or values.
-</p>
-
-<p class="sample-questions">
-Example: Compare +5°C and -3°C on a number line.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
 </div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.C.6
-</span>
 </div>
-
-<p class="outcome-description">
-Understand a rational number as a point on the number line. Extend number line diagrams and coordinate axes.
-</p>
-
-<p class="sample-questions">
-Example: Place -2.5 correctly on the number line.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Decimal Operations">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Mixed Practice">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
 </div>
-
+<div class="pdf-mini-content" id="pdf-viewer-ns3">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns3" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.C.7
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.NS.B.4</span>
+<p class="outcome-description">Find the greatest common factor of two whole numbers less than or equal to 100 and the least common multiple of two whole numbers less than or equal to 12.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["GCF(24, 36) = ?", "LCM(4, 6) = ?", "GCF(48, 72) = ?", "LCM(8, 12) = ?", "GCF(15, 25) = ?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">GCF(24, 36) = ?</div>
 </div>
-
-<p class="outcome-description">
-Understand ordering and absolute value of rational numbers.
-</p>
-
-<p class="sample-questions">
-Example: |-5| = ? Compare to 3.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
 </div>
-
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="GCF & LCM">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Factor Practice">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ns4">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns4" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.NS.C.8
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.NS.C.5</span>
+<p class="outcome-description">Understand that positive and negative numbers are used together to describe quantities having opposite directions or values.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Compare +5°C and -3°C on a number line", "What does -10 feet mean in elevation?", "Order: -2, 5, -7, 0, 3", "Which is colder: -5°F or 2°F?", "What is the opposite of +15?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Compare +5°C and -3°C on a number line</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Positive & Negative">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Number Line">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ns5">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns5" download>Download Worksheet 1</a>
+</div>
 </div>
 
-<p class="outcome-description">
-Solve real-world and mathematical problems by graphing points in all four quadrants of the coordinate plane.
-</p>
-
-<p class="sample-questions">
-Example: Plot (3, -2). Which quadrant?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.NS.C.6</span>
+<p class="outcome-description">Understand a rational number as a point on the number line. Extend number line diagrams and coordinate axes.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Place -2.5 correctly on the number line", "Plot (-3, 4) on coordinate plane", "What point is at (0, -5)?", "Order: -1.5, 0.5, -0.25, 2", "Which quadrant contains (-2, -3)?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Place -2.5 correctly on the number line</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Rational Numbers">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Coordinate Plane">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ns6">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns6" download>Download Worksheet 1</a>
+</div>
 </div>
 
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.NS.C.7</span>
+<p class="outcome-description">Understand ordering and absolute value of rational numbers.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["|-5| = ? Compare to 3", "|7| vs |-7|", "Order: |-3|, |2|, |-1|, |4|", "Which is greater: |-6| or |5|?", "Solve: |x| = 8"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">|-5| = ? Compare to 3</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Absolute Value">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Ordering Numbers">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ns7">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns7" download>Download Worksheet 1</a>
+</div>
+</div>
+
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.NS.C.8</span>
+<p class="outcome-description">Solve real-world and mathematical problems by graphing points in all four quadrants of the coordinate plane.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Plot (3, -2). Which quadrant?", "Find distance between (1, 3) and (1, -2)", "Reflect (4, 5) across x-axis", "What quadrant is (-3, 7)?", "Plot vertices of rectangle: (2,1), (2,4), (-1,4), (-1,1)"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Plot (3, -2). Which quadrant?</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Graphing Points">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Quadrants">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ns8">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ns8" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="unit-mastery">
@@ -978,196 +1265,282 @@ Take Diagnostic Test
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.A.1
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.EE.A.1</span>
+<p class="outcome-description">Write and evaluate numerical expressions involving whole-number exponents.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["2³ = ?", "5² × 3¹ = ?", "4³ ÷ 2² = ?", "What is 3⁴?", "Evaluate: 2⁵ - 2³"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">2³ = ?</div>
 </div>
-
-<p class="outcome-description">
-Write and evaluate numerical expressions involving whole-number exponents.
-</p>
-
-<p class="sample-questions">
-Example: 2³ = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads">
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
-<a href="#" class="pdf-rectangle">PDF</a>
 </div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.A.2
-</span>
 </div>
-
-<p class="outcome-description">
-Write, read, and evaluate expressions in which letters stand for numbers.
-</p>
-
-<p class="sample-questions">
-Example: 3x + 2 when x = 4, = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Exponents">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Numerical Expressions">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee1">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee1" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.A.3
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.EE.A.2</span>
+<p class="outcome-description">Write, read, and evaluate expressions in which letters stand for numbers.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["3x + 2 when x = 4, = ?", "Evaluate 2y - 5 when y = 7", "If a = 3, what is 4a + 1?", "Find 5m - 2m when m = 6", "What is x² + 3 when x = 5?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">3x + 2 when x = 4, = ?</div>
 </div>
-
-<p class="outcome-description">
-Apply the properties of operations to generate equivalent expressions.
-</p>
-
-<p class="sample-questions">
-Example: 2(x + 3) = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.A.4
-</span>
 </div>
-
-<p class="outcome-description">
-Identify when two expressions are equivalent.
-</p>
-
-<p class="sample-questions">
-Example: 2x + 3 ≡ 3 + 2x ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Variable Expressions">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Evaluating Expressions">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee2">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee2" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.B.5
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.EE.A.3</span>
+<p class="outcome-description">Apply the properties of operations to generate equivalent expressions.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["2(x + 3) = ?", "Simplify: 3a + 2a", "Expand: 4(y - 1)", "Combine: 5x + 3x - 2x", "Distribute: -2(m + 4)"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">2(x + 3) = ?</div>
 </div>
-
-<p class="outcome-description">
-Understand solving an equation or inequality as a process of answering a question.
-</p>
-
-<p class="sample-questions">
-Example: x = 2, x + 1 = 3. True?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.B.6
-</span>
 </div>
-
-<p class="outcome-description">
-Use variables to represent numbers and write expressions when solving problems.
-</p>
-
-<p class="sample-questions">
-Example: n = number of students in class
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Properties">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Equivalent Expressions">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee3">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee3" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.B.7
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.EE.A.4</span>
+<p class="outcome-description">Identify when two expressions are equivalent.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["2x + 3 ≡ 3 + 2x ?", "Are 4y and 2y + 2y equivalent?", "Is 3(a + 1) = 3a + 3?", "Compare: 5m - 2m vs 3m", "Check: 2(x + 4) vs 2x + 8"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">2x + 3 ≡ 3 + 2x ?</div>
 </div>
-
-<p class="outcome-description">
-Solve real-world and mathematical problems by writing and solving equations.
-</p>
-
-<p class="sample-questions">
-Example: x + 5 = 10, x = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.B.8
-</span>
 </div>
-
-<p class="outcome-description">
-Write an inequality of the form x > c or x < c to represent a constraint.
-</p>
-
-<p class="sample-questions">
-Example: age > 12
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Equivalent Check">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Expression Comparison">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee4">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee4" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.EE.C.9
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.EE.B.5</span>
+<p class="outcome-description">Understand solving an equation or inequality as a process of answering a question.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["x = 2, x + 1 = 3. True?", "If y = 5, is 2y = 10?", "Check: a = 3 in a + 4 = 7", "Verify: m = 6 solves m - 2 = 4", "Test: n = 8 in 3n = 24"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">x = 2, x + 1 = 3. True?</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Equation Solving">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Solution Check">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee5">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee5" download>Download Worksheet 1</a>
+</div>
 </div>
 
-<p class="outcome-description">
-Use variables to represent two quantities in a real-world problem that change in relationship to one another.
-</p>
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.EE.B.6</span>
+<p class="outcome-description">Use variables to represent numbers and write expressions when solving problems.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["n = number of students in class", "Let x = cost of one apple", "If h = hours worked, pay = 15h", "Let d = distance, time = d/60", "Use p for price, tax = 0.08p"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">n = number of students in class</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Variables">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Word Problems">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee6">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee6" download>Download Worksheet 1</a>
+</div>
+</div>
 
-<p class="sample-questions">
-Example: speed = 40 mph, time = 2 hours, distance = ?
-</p>
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.EE.B.7</span>
+<p class="outcome-description">Solve real-world and mathematical problems by writing and solving equations.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["x + 5 = 10, x = ?", "3y = 15, find y", "a - 7 = 12, solve for a", "2m + 3 = 11, m = ?", "15 = 4n - 1, find n"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">x + 5 = 10, x = ?</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Solving Equations">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Real-World Equations">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee7">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee7" download>Download Worksheet 1</a>
+</div>
+</div>
 
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.EE.B.8</span>
+<p class="outcome-description">Write an inequality of the form x > c or x < c to represent a constraint.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["age > 12", "height < 60 inches", "score ≥ 80", "temperature ≤ 32°F", "speed > 25 mph"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">age > 12</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Inequalities">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Constraints">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee8">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee8" download>Download Worksheet 1</a>
+</div>
+</div>
 
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.EE.C.9</span>
+<p class="outcome-description">Use variables to represent two quantities in a real-world problem that change in relationship to one another.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["speed = 40 mph, time = 2 hours, distance = ?", "If x = hours, cost = 25x", "Let t = temperature, pressure = 2t + 10", "age = a, next year = a + 1", "price = p, with tax = 1.08p"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">speed = 40 mph, time = 2 hours, distance = ?</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Relationships">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Two Variables">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-ee9">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-ee9" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="unit-mastery">
@@ -1199,87 +1572,127 @@ Take Diagnostic Test
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.G.A.1
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.G.A.1</span>
+<p class="outcome-description">Find the area of right triangles, other triangles, special quadrilaterals, and polygons.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Triangle area = ½ × base × height = ½ × 6 × 4 = ?", "Rectangle area = length × width = 8 × 5 = ?", "Parallelogram area = base × height = 10 × 3 = ?", "Find area of triangle with base 12, height 7", "Square area = side² = 9² = ?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Triangle area = ½ × base × height = ½ × 6 × 4 = ?</div>
 </div>
-
-<p class="outcome-description">
-Find the area of right triangles, other triangles, special quadrilaterals, and polygons.
-</p>
-
-<p class="sample-questions">
-Example: Triangle area = ½ × base × height = ½ × 6 × 4 = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.G.A.2
-</span>
 </div>
-
-<p class="outcome-description">
-Find the volume of a right rectangular prism with fractional edge lengths.
-</p>
-
-<p class="sample-questions">
-Example: Volume = 3 × 2 × 4 = ?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Area Formulas">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Polygon Areas">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-g1">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-g1" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.G.A.3
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.G.A.2</span>
+<p class="outcome-description">Find the volume of a right rectangular prism with fractional edge lengths.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Volume = 3 × 2 × 4 = ?", "V = l × w × h = 5.5 × 3 × 2 = ?", "Box: 2.5 ft × 1.5 ft × 4 ft = ? cubic ft", "Prism volume = 7 × 3.5 × 2.5 = ?", "Find volume: 4½ × 2¼ × 3 = ?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Volume = 3 × 2 × 4 = ?</div>
 </div>
-
-<p class="outcome-description">
-Draw polygons in the coordinate plane given coordinates for the vertices.
-</p>
-
-<p class="sample-questions">
-Example: Plot (0,0), (2,0), (2,2), (0,2)
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Volume Basics">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Fractional Edges">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-g2">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-g2" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.G.A.4
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.G.A.3</span>
+<p class="outcome-description">Draw polygons in the coordinate plane given coordinates for the vertices.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Plot (0,0), (2,0), (2,2), (0,2)", "Draw triangle: (1,1), (4,1), (2,3)", "Rectangle vertices: (-1,2), (3,2), (3,-1), (-1,-1)", "Plot square: (0,0), (3,0), (3,3), (0,3)", "Pentagon: (0,2), (2,3), (3,1), (1,-1), (-1,1)"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Plot (0,0), (2,0), (2,2), (0,2)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Coordinate Polygons">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Drawing Practice">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-g3">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-g3" download>Download Worksheet 1</a>
+</div>
 </div>
 
-<p class="outcome-description">
-Represent three-dimensional figures using nets and find the surface area.
-</p>
-
-<p class="sample-questions">
-Example: Identify the faces of a cube from its net of 6 squares.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.G.A.4</span>
+<p class="outcome-description">Represent three-dimensional figures using nets and find the surface area.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Identify the faces of a cube from its net of 6 squares", "Find surface area of rectangular prism net", "Which net folds into a triangular prism?", "Calculate surface area: 2×3×4 box", "Match the net to the 3D shape"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Identify the faces of a cube from its net of 6 squares</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Nets">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Surface Area">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-g4">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-g4" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="unit-mastery">
@@ -1311,107 +1724,159 @@ Take Diagnostic Test
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.SP.A.1
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.SP.A.1</span>
+<p class="outcome-description">Recognize a statistical question as one that anticipates variability in the data.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Is \"How tall are the students?\" a statistical question? Why?", "\"What is my height?\" - Statistical or not?", "\"How many pets do students have?\" - Explain", "\"What time is it?\" vs \"What time do students wake up?\"", "Identify: \"How much do backpacks weigh?\""]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Is "How tall are the students?" a statistical question? Why?</div>
 </div>
-
-<p class="outcome-description">
-Recognize a statistical question as one that anticipates variability in the data.
-</p>
-
-<p class="sample-questions">
-Example: Is "How tall are the students?" a statistical question? Why?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.SP.A.2
-</span>
 </div>
-
-<p class="outcome-description">
-Understand that a set of data collected has a distribution described by its center, spread, and overall shape.
-</p>
-
-<p class="sample-questions">
-Example: Use mean, median, and mode to describe this set of scores.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Statistical Questions">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Variability">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-sp1">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-sp1" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.SP.A.3
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.SP.A.2</span>
+<p class="outcome-description">Understand that a set of data collected has a distribution described by its center, spread, and overall shape.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Use mean, median, and mode to describe this set of scores", "Describe the shape: bell curve, skewed, uniform", "Find center and spread of: 2, 4, 6, 8, 10", "Compare distributions of two data sets", "What does the spread tell us about the data?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Use mean, median, and mode to describe this set of scores</div>
 </div>
-
-<p class="outcome-description">
-Recognize that a measure of center summarizes all values with a single number.
-</p>
-
-<p class="sample-questions">
-Example: Which center measure best summarizes this data?
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
 </div>
-
-<div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.SP.B.4
-</span>
 </div>
-
-<p class="outcome-description">
-Display numerical data in plots on a number line, including dot plots, histograms, and box plots.
-</p>
-
-<p class="sample-questions">
-Example: Create a histogram for these survey responses.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
-
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Data Distribution">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Center & Spread">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-sp2">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-sp2" download>Download Worksheet 1</a>
+</div>
 </div>
 
 <div class="outcome">
-
-<div class="outcome-meta">
-<span class="outcome-code">
-6.SP.B.5
-</span>
+<div class="outcome-main">
+<span class="outcome-code">6.SP.A.3</span>
+<p class="outcome-description">Recognize that a measure of center summarizes all values with a single number.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Which center measure best summarizes this data?", "When is median better than mean?", "Find the typical value for: 5, 7, 9, 11, 13", "Compare mean vs median for skewed data", "What does the mode tell us about the data?"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Which center measure best summarizes this data?</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Measures of Center">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Mean, Median, Mode">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-sp3">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-sp3" download>Download Worksheet 1</a>
+</div>
 </div>
 
-<p class="outcome-description">
-Summarize numerical data sets in relation to their context.
-</p>
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.SP.B.4</span>
+<p class="outcome-description">Display numerical data in plots on a number line, including dot plots, histograms, and box plots.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Create a histogram for these survey responses", "Make a dot plot for: 2, 3, 3, 4, 5, 5, 5, 6", "Draw a box plot showing quartiles", "Which plot best shows the data distribution?", "Create a frequency table and histogram"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Create a histogram for these survey responses</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Data Plots">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Histograms & Box Plots">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-sp4">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-sp4" download>Download Worksheet 1</a>
+</div>
+</div>
 
-<p class="sample-questions">
-Example: Report the median and range for a small data set.
-</p>
-
-<div class="worksheet-heading">Practice Worksheets:</div>
-<div class="pdf-downloads"><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a><a href="#" class="pdf-rectangle">PDF</a></div>
+<div class="outcome">
+<div class="outcome-main">
+<span class="outcome-code">6.SP.B.5</span>
+<p class="outcome-description">Summarize numerical data sets in relation to their context.</p>
+<div class="sample-questions">
+<div class="rotating-examples" data-examples='["Report the median and range for a small data set", "Summarize test scores: mean, median, range", "Describe the typical student height in context", "What do these statistics tell us about the class?", "Compare two data sets using summary statistics"]'>
+<span class="examples-label">Examples</span>
+<div class="example-content">
+<div class="example-item active">Report the median and range for a small data set</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pdf-mini-viewer">
+<div class="pdf-tabs" style="margin-bottom:8px;">
+<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Data Summary">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 1 <span class="pdf-tab-number">1</span>
+</button>
+<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Context Analysis">
+<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+Worksheet 2 <span class="pdf-tab-number">2</span>
+</button>
+</div>
+<div class="pdf-mini-content" id="pdf-viewer-sp5">
+<embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
+</div>
+<a href="6RPA1_worksheet1.pdf" class="download-button" id="download-link-sp5" download>Download Worksheet 1</a>
+</div>
+</div>
 
 </div>
 
@@ -1419,6 +1884,8 @@ Example: Report the median and range for a small data set.
 <button class="test-button mastery">
 Take Unit Mastery Test
 </button>
+</div>
+
 </div>
 
 </div>
@@ -1517,7 +1984,7 @@ searchInput.addEventListener('input', () => {
     if (!query) {
         // Show all outcomes if search is empty
         document.querySelectorAll('.outcome').forEach(outcome => {
-            outcome.style.display = 'grid';
+            outcome.style.display = 'flex';
         });
         return;
     }
@@ -1537,7 +2004,7 @@ searchInput.addEventListener('input', () => {
     document.querySelectorAll('.outcome').forEach(outcome => {
         const text = outcome.innerText.toLowerCase();
         if (text.includes(queryLower)) {
-            outcome.style.display = 'grid';
+            outcome.style.display = 'flex';
         } else {
             outcome.style.display = 'none';
         }
@@ -1560,6 +2027,91 @@ content.style.display === 'none'
 ? 'block'
 : 'none';
 });
+});
+
+/* ROTATING EXAMPLES */
+
+function initRotatingExamples() {
+    const rotatingContainers = document.querySelectorAll('.rotating-examples');
+    
+    rotatingContainers.forEach(container => {
+        const examples = JSON.parse(container.dataset.examples);
+        let currentIndex = 0;
+        
+        function createExampleItems() {
+            container.innerHTML = '';
+            examples.forEach((example, index) => {
+                const item = document.createElement('div');
+                item.className = 'example-item';
+                item.textContent = example;
+                if (index === 0) item.classList.add('active');
+                container.appendChild(item);
+            });
+        }
+        
+        function rotateExample() {
+            const items = container.querySelectorAll('.example-item');
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % examples.length;
+            items[currentIndex].classList.add('active');
+        }
+        
+        createExampleItems();
+        setInterval(rotateExample, 6000); // Rotate every 6 seconds
+    });
+}
+
+/* PDF VIEWER FUNCTIONALITY */
+
+function initPDFViewer() {
+    // Old-style pdf-rectangle links (other outcomes)
+    document.querySelectorAll('.pdf-rectangle[data-pdf]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const outcome = link.closest('.outcome');
+            const pdfViewer = outcome.querySelector('.pdf-mini-content');
+            if (pdfViewer) {
+                pdfViewer.innerHTML = `<embed src="${link.dataset.pdf}" type="application/pdf" class="pdf-mini-embed">`;
+            }
+        });
+    });
+
+    // Tab-style pdf buttons
+    document.querySelectorAll('.pdf-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const outcome = tab.closest('.outcome');
+
+            // Update active tab
+            outcome.querySelectorAll('.pdf-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Swap PDF preview
+            const viewer = outcome.querySelector('.pdf-mini-content');
+            if (viewer) {
+                viewer.innerHTML = `<embed src="${tab.dataset.pdf}" type="application/pdf" class="pdf-mini-embed">`;
+            }
+
+            // Update download button
+            const downloadButton = outcome.querySelector('.download-button');
+            if (downloadButton) {
+                downloadButton.href = tab.dataset.pdf;
+                const worksheetNumber = tab.textContent.includes('Worksheet 1') ? '1' : '2';
+                downloadButton.textContent = `Download Worksheet ${worksheetNumber}`;
+            }
+
+            // Update label (for backwards compatibility)
+            const label = outcome.querySelector('.pdf-mini-header span');
+            if (label && tab.dataset.label) {
+                label.textContent = tab.dataset.label;
+            }
+        });
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initRotatingExamples();
+    initPDFViewer();
 });
 
 </script>
