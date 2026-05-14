@@ -423,7 +423,7 @@ body {
 .domain-title {
     margin: 0;
 
-    font-size: 1.08rem;
+    font-size: 1.19rem;
     font-weight: 700;
 
     letter-spacing: -0.02em;
@@ -446,9 +446,9 @@ body {
 
     border-radius: 999px;
 
-    padding: 6px 11px;
+    padding: 7px 13px;
 
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     font-weight: 700;
     font-family: inherit;
 
@@ -492,7 +492,7 @@ body {
 
 .outcome-code {
     display: inline-block;
-    font-size: 0.78rem;
+    font-size: 0.86rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -502,7 +502,7 @@ body {
 
 .outcome-description {
     margin: 0;
-    font-size: 0.93rem;
+    font-size: 1.02rem;
     line-height: 1.5;
     color: var(--text-dark);
     font-weight: 500;
@@ -525,12 +525,19 @@ body {
 .rotating-examples {
     position: relative;
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 8px;
+}
+
+.examples-header {
+    display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .examples-label {
-    font-size: 0.7rem;
+    font-size: 0.77rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -543,7 +550,8 @@ body {
 .example-content {
     flex: 1;
     position: relative;
-    min-height: 20px;
+    min-height: 24px;
+    margin-bottom: 8px;
 }
 
 .example-item {
@@ -553,6 +561,8 @@ body {
     left: 0;
     width: 100%;
     transition: opacity 0.5s ease-in-out;
+    font-size: 1.02rem;
+    line-height: 1.4;
 }
 
 .example-item.active {
@@ -566,6 +576,81 @@ body {
 
 .example-item:nth-child(even) {
     color: var(--primary-light);
+}
+
+.category-container {
+    position: relative;
+    min-height: 28px;
+    margin-top: 6px;
+}
+
+.example-category {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 16px;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.example-category.active {
+    opacity: 1;
+}
+
+.worksheet-tabs-container {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+    margin-top: 8px;
+    padding-top: 6px;
+}
+
+.category-conceptual-understanding {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    color: #0d47a1;
+    border: 1px solid #90caf9;
+}
+
+.category-problem-solving {
+    background: linear-gradient(135deg, #fff3e0, #ffcc02);
+    color: #e65100;
+    border: 1px solid #ffb74d;
+}
+
+.category-fluency-practice {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    color: #4a148c;
+    border: 1px solid #ce93d8;
+}
+
+.category-real-world-application {
+    background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+    color: #1b5e20;
+    border: 1px solid #81c784;
+}
+
+.category-mathematical-reasoning {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+    color: #880e4f;
+    border: 1px solid #f48fb1;
+}
+
+.category-visual-models {
+    background: linear-gradient(135deg, #fff8e1, #ffecb3);
+    color: #e65100;
+    border: 1px solid #ffcc02;
+}
+
+.category-algebraic-thinking {
+    background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+    color: #1a237e;
+    border: 1px solid #9fa8da;
 }
 
 @keyframes fadeInOut {
@@ -872,25 +957,20 @@ Take Diagnostic Test
 <span class="outcome-code">6.RP.A.1</span>
 <p class="outcome-description">Understand the concept of a ratio and use ratio language to describe a ratio relationship between two quantities.</p>
 <div class="sample-questions">
-<div class="rotating-examples" data-examples='["Write the ratio of 3 apples to 2 oranges in simplest form.", "Express the ratio of 12 boys to 8 girls in three different ways.", "A recipe uses 4 cups flour to 3 cups sugar. What is this ratio?", "In a parking lot, there are 15 cars and 5 trucks. Find the ratio of cars to trucks.", "A class has 20 students and 4 teachers. What is the student to teacher ratio?"]'>
+<div class="rotating-examples" data-examples='["Write the ratio of 3 apples to 2 oranges in simplest form.", "Express the ratio of 12 boys to 8 girls in three different ways.", "A recipe uses 4 cups flour to 3 cups sugar. What is this ratio?", "In a parking lot, there are 15 cars and 5 trucks. Find the ratio of cars to trucks.", "A class has 20 students and 4 teachers. What is the student to teacher ratio?"]' data-categories='["Conceptual Understanding", "Fluency Practice", "Real-World Application", "Problem Solving", "Real-World Application"]'>
+<div class="examples-header">
 <span class="examples-label">Examples</span>
+</div>
 <div class="example-content">
 <div class="example-item active">Write the ratio of 3 apples to 2 oranges in simplest form.</div>
+</div>
+<div class="category-container">
+<div class="example-category active category-conceptual-understanding">Conceptual Understanding</div>
 </div>
 </div>
 </div>
 </div>
 <div class="pdf-mini-viewer">
-<div class="pdf-tabs" style="margin-bottom:8px;">
-<button class="pdf-tab active" data-pdf="6RPA1_worksheet1.pdf" data-label="Finding Ratios (visual)">
-<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-Worksheet 1 <span class="pdf-tab-number">1</span>
-</button>
-<button class="pdf-tab" data-pdf="6RPA1_worksheet2.pdf" data-label="Ratios &amp; Rates Foundations">
-<svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-Worksheet 2 <span class="pdf-tab-number">2</span>
-</button>
-</div>
 <div class="pdf-mini-content" id="pdf-viewer-rpa1">
 <embed src="6RPA1_worksheet1.pdf" type="application/pdf" class="pdf-mini-embed">
 </div>
@@ -903,10 +983,15 @@ Worksheet 2 <span class="pdf-tab-number">2</span>
 <span class="outcome-code">6.RP.A.2</span>
 <p class="outcome-description">Understand the concept of a unit rate associated with a ratio and use rate language in context.</p>
 <div class="sample-questions">
-<div class="rotating-examples" data-examples='["5 pencils = $2, 1 pencil = ?", "A car travels 240 miles in 4 hours. What is the unit rate?", "If 3 pounds of apples cost $6, what is the cost per pound?", "A factory produces 150 widgets in 5 hours. Find the rate per hour.", "Water flows at 12 gallons per 3 minutes. What is the rate per minute?"]'>
+<div class="rotating-examples" data-examples='["5 pencils = $2, 1 pencil = ?", "A car travels 240 miles in 4 hours. What is the unit rate?", "If 3 pounds of apples cost $6, what is the cost per pound?", "A factory produces 150 widgets in 5 hours. Find the rate per hour.", "Water flows at 12 gallons per 3 minutes. What is the rate per minute?"]' data-categories='["Problem Solving", "Real-World Application", "Fluency Practice", "Real-World Application", "Mathematical Reasoning"]'>
+<div class="examples-header">
 <span class="examples-label">Examples</span>
+</div>
 <div class="example-content">
 <div class="example-item active">5 pencils = $2, 1 pencil = ?</div>
+</div>
+<div class="category-container">
+<div class="example-category active category-problem-solving">Problem Solving</div>
 </div>
 </div>
 </div>
@@ -934,10 +1019,15 @@ Worksheet 2 <span class="pdf-tab-number">2</span>
 <span class="outcome-code">6.RP.A.3</span>
 <p class="outcome-description">Use ratio and rate reasoning to solve real-world and mathematical problems.</p>
 <div class="sample-questions">
-<div class="rotating-examples" data-examples='["1 cup sugar : 2 cups flour = ? : 6 cups flour", "If 4 oranges cost $3, how much do 12 oranges cost?", "A recipe for 6 people uses 2 cups of rice. How much rice for 15 people?", "A map scale shows 1 inch = 50 miles. How many miles is 3.5 inches?", "If 5 workers can build a fence in 8 days, how long for 10 workers?"]'>
+<div class="rotating-examples" data-examples='["1 cup sugar : 2 cups flour = ? : 6 cups flour", "If 4 oranges cost $3, how much do 12 oranges cost?", "A recipe for 6 people uses 2 cups of rice. How much rice for 15 people?", "A map scale shows 1 inch = 50 miles. How many miles is 3.5 inches?", "If 5 workers can build a fence in 8 days, how long for 10 workers?"]' data-categories='["Algebraic Thinking", "Real-World Application", "Problem Solving", "Real-World Application", "Mathematical Reasoning"]'>
+<div class="examples-header">
 <span class="examples-label">Examples</span>
+</div>
 <div class="example-content">
 <div class="example-item active">1 cup sugar : 2 cups flour = ? : 6 cups flour</div>
+</div>
+<div class="category-container">
+<div class="example-category active category-algebraic-thinking">Algebraic Thinking</div>
 </div>
 </div>
 </div>
@@ -993,10 +1083,15 @@ Take Diagnostic Test
 <span class="outcome-code">6.NS.A.1</span>
 <p class="outcome-description">Interpret and compute quotients of fractions, and solve word problems involving division of fractions by fractions.</p>
 <div class="sample-questions">
-<div class="rotating-examples" data-examples='["1/2 ÷ 1/4 = ?", "3/4 ÷ 1/8 = ?", "A pizza is 3/4 eaten. If each slice is 1/8 of the pizza, how many slices were eaten?", "2/3 ÷ 1/6 = ?", "If 1/3 cup of flour makes 1 muffin, how many muffins from 2/3 cup?"]'>
+<div class="rotating-examples" data-examples='["1/2 ÷ 1/4 = ?", "3/4 ÷ 1/8 = ?", "A pizza is 3/4 eaten. If each slice is 1/8 of the pizza, how many slices were eaten?", "2/3 ÷ 1/6 = ?", "If 1/3 cup of flour makes 1 muffin, how many muffins from 2/3 cup?"]' data-categories='["Fluency Practice", "Fluency Practice", "Real-World Application", "Fluency Practice", "Problem Solving"]'>
+<div class="examples-header">
 <span class="examples-label">Examples</span>
+</div>
 <div class="example-content">
 <div class="example-item active">1/2 ÷ 1/4 = ?</div>
+</div>
+<div class="category-container">
+<div class="example-category active category-fluency-practice">Fluency Practice</div>
 </div>
 </div>
 </div>
@@ -1024,10 +1119,15 @@ Worksheet 2 <span class="pdf-tab-number">2</span>
 <span class="outcome-code">6.NS.B.2</span>
 <p class="outcome-description">Fluently divide multi-digit numbers using the standard algorithm.</p>
 <div class="sample-questions">
-<div class="rotating-examples" data-examples='["1234 ÷ 12 = ?", "5678 ÷ 23 = ?", "9876 ÷ 34 = ?", "2468 ÷ 16 = ?", "7890 ÷ 45 = ?"]'>
+<div class="rotating-examples" data-examples='["1234 ÷ 12 = ?", "5678 ÷ 23 = ?", "9876 ÷ 34 = ?", "2468 ÷ 16 = ?", "7890 ÷ 45 = ?"]' data-categories='["Fluency Practice", "Fluency Practice", "Fluency Practice", "Fluency Practice", "Fluency Practice"]'>
+<div class="examples-header">
 <span class="examples-label">Examples</span>
+</div>
 <div class="example-content">
 <div class="example-item active">1234 ÷ 12 = ?</div>
+</div>
+<div class="category-container">
+<div class="example-category active category-fluency-practice">Fluency Practice</div>
 </div>
 </div>
 </div>
@@ -2036,24 +2136,103 @@ function initRotatingExamples() {
     
     rotatingContainers.forEach(container => {
         const examples = JSON.parse(container.dataset.examples);
+        const categories = container.dataset.categories ? JSON.parse(container.dataset.categories) : [];
         let currentIndex = 0;
         
         function createExampleItems() {
+            // Clear existing content
             container.innerHTML = '';
+            
+            // Create header
+            const header = document.createElement('div');
+            header.className = 'examples-header';
+            const label = document.createElement('span');
+            label.className = 'examples-label';
+            label.textContent = 'Examples';
+            header.appendChild(label);
+            container.appendChild(header);
+            
+            // Create example content container
+            const exampleContent = document.createElement('div');
+            exampleContent.className = 'example-content';
+            
             examples.forEach((example, index) => {
                 const item = document.createElement('div');
                 item.className = 'example-item';
                 item.textContent = example;
                 if (index === 0) item.classList.add('active');
-                container.appendChild(item);
+                exampleContent.appendChild(item);
             });
+            
+            container.appendChild(exampleContent);
+            
+            // Create category container if categories exist
+            if (categories.length > 0) {
+                // Create category container
+                const categoryContainer = document.createElement('div');
+                categoryContainer.className = 'category-container';
+                
+                categories.forEach((category, index) => {
+                    const categoryItem = document.createElement('div');
+                    categoryItem.className = 'example-category';
+                    categoryItem.textContent = category;
+                    
+                    // Add category-specific class
+                    const categoryClass = 'category-' + category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                    categoryItem.classList.add(categoryClass);
+                    
+                    if (index === 0) categoryItem.classList.add('active');
+                    categoryContainer.appendChild(categoryItem);
+                });
+                
+                container.appendChild(categoryContainer);
+                
+                // Create worksheet tabs container below the category
+                const worksheetTabsContainer = document.createElement('div');
+                worksheetTabsContainer.className = 'worksheet-tabs-container';
+                
+                // Add worksheet tabs
+                const tab1 = document.createElement('button');
+                tab1.className = 'pdf-tab active';
+                tab1.setAttribute('data-pdf', '6RPA1_worksheet1.pdf');
+                tab1.innerHTML = `
+                    <svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Worksheet 1 <span class="pdf-tab-number">1</span>
+                `;
+                
+                const tab2 = document.createElement('button');
+                tab2.className = 'pdf-tab';
+                tab2.setAttribute('data-pdf', '6RPA1_worksheet2.pdf');
+                tab2.innerHTML = `
+                    <svg viewBox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="2" fill="currentColor" opacity="0.2"/><path d="M3 6h8M3 9h8M3 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Worksheet 2 <span class="pdf-tab-number">2</span>
+                `;
+                
+                worksheetTabsContainer.appendChild(tab1);
+                worksheetTabsContainer.appendChild(tab2);
+                
+                container.appendChild(worksheetTabsContainer);
+            }
         }
         
         function rotateExample() {
             const items = container.querySelectorAll('.example-item');
+            const categoryItems = container.querySelectorAll('.example-category');
+            
+            // Remove active class from current items
             items[currentIndex].classList.remove('active');
+            if (categoryItems.length > 0) {
+                categoryItems[currentIndex].classList.remove('active');
+            }
+            
+            // Move to next index
             currentIndex = (currentIndex + 1) % examples.length;
+            
+            // Add active class to new items
             items[currentIndex].classList.add('active');
+            if (categoryItems.length > 0 && categoryItems[currentIndex]) {
+                categoryItems[currentIndex].classList.add('active');
+            }
         }
         
         createExampleItems();
